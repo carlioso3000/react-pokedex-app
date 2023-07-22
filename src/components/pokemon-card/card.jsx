@@ -1,33 +1,46 @@
-import '../styles/pokemon-card.css'
+import '../../styles/pokemon-card.css'
+import { Card, Tag, Typography } from 'antd';
+const { Title } = Typography;
 
-function Card({ nombre, imagen, tipo, detipo}) {
+const typeColors = {
+  bug: '#729F3F',
+  dark: '#707070',
+  dragon: '#F16E57',
+  electric: '#EED535',
+  fairy: '#FDB9E9',
+  fighting: '#D56723',
+  fire: '#FD7D24',
+  flying: '#BDB9B8',
+  ghost: '#7B62A3',
+  grass: '#9BCC50',
+  ground: '#AB9842',
+  ice: '#50C3E7',
+  normal: '#A4ACAF',
+  poison: '#B87FC8',
+  psychic: '#F366B9',
+  rock: '#A38C21',
+  shadow: '#729F3F',
+  steel: '#9EB7B8',
+  water: '#4592C4'
+};
 
-  
-
+function CardPokemon({ pokemonName, pokemonImage, pokemonType }) {
   return (
-    <div className="card-container">
-      <div className="card">
-          <img className="card-img-top" src={imagen} alt={nombre} width="350" height="350" />
-        
-        <div className="card-body">
-          <h5 className="card-title">{nombre} <span className="pokemon-id">#{identificador}</span></h5>
-          
-        </div>
+
+
+<Card
+      cover={<img alt={pokemonName} src={pokemonImage} />}
+      style={{ width: 240 }}
+      bodyStyle={{ padding: '24px 0' }}
+    >
+      <Title level={5}>{pokemonName}</Title>
+      <div style={{ display:'flex', width:'100%'}}>
+      {pokemonType.map(t => (
+        <Tag key={t} width={100} color={typeColors[t]} style={{ flex: 1, textAlign: 'center' }}>{t}</Tag>
+      ))}
       </div>
-      <div className=''>
-        {detipo.length === 2 ? (
-          <ul className="tipos-container list-group list-group-horizontal">
-            <li className={`list-group-item ${tipo[0]}`}><span className='tipo'>{tipo[0]}</span></li>
-            <li className={`list-group-item ${tipo[1]}`}><span className='tipo'>{tipo[1]}</span></li>
-          </ul>
-        ) : (
-          <ul className="tipos-container list-group list-group-horizontal">
-            <li className={`list-group-item ${tipo}`}><span className='tipo'>{tipo}</span></li>
-          </ul>
-        )}
-        
-      </div>
-    </div>
+    </Card>
   )
 }
-export default Pokemon;
+
+export default CardPokemon;

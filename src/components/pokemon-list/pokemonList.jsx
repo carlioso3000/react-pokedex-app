@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getPokemonList, getPokemonDetails } from '../../utils/api.jsx';
+import { Row, Col } from 'antd';
+import CardPokemon from '../pokemon-card/card.jsx';
 
 
-function PokemonList({ nombre, imagen, tipo, detipo}) {
+function PokemonList() {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
@@ -20,16 +22,17 @@ function PokemonList({ nombre, imagen, tipo, detipo}) {
 
   return(
 
-        <ul>
-          {pokemons.map(pokemon => (
-            <li key={pokemon.name}>
-              <img src={pokemon.sprite} alt={pokemon.name + " image"} width="150" height="150" />
-              <p>{pokemon.name}</p>
-              <p>Type: {pokemon.type.join(', ')}</p>
-            </li>
-          ))}
-      </ul>
-    
+    <Row gutter={[16, 16]}>
+      {pokemons.map(pokemon => (
+        <Col key={pokemon.name} xs={24} sm={12} md={8} lg={8}>
+          <CardPokemon
+            pokemonName={pokemon.name}
+            pokemonImage={pokemon.sprite}
+            pokemonType={pokemon.type}
+          />
+        </Col>
+      ))}
+    </Row>
   );
 }
 

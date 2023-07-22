@@ -1,7 +1,7 @@
-import { Layout, Space } from 'antd';
-import Card from '../../components/pokemon-card/card.jsx'
+import { Layout, Row, Col } from 'antd';
+import PokemonList from '../../components/pokemon-list/pokemonList.jsx';
 
-const { Header, Footer, Content } = Layout;
+const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
   textAlign: 'center',
   color: '#fff',
@@ -10,12 +10,18 @@ const headerStyle = {
   lineHeight: '64px',
   backgroundColor: '#7dbcea',
 };
+const siderStyle = {
+  textAlign: 'center',
+  lineHeight: '120px',
+  color: '#fff',
+  backgroundColor: '#3ba0e9',
+};
 const contentStyle = {
   textAlign: 'center',
   minHeight: 120,
   lineHeight: '120px',
   color: '#fff',
-  backgroundColor: '#108ee9',
+  backgroundColor: '#e5e5e5',
 };
 const footerStyle = {
   textAlign: 'center',
@@ -25,11 +31,16 @@ const footerStyle = {
 
 function HomePage () {
   return (
+
     <Layout>
       <Header style={headerStyle}>Header</Header>
-      <Content style={contentStyle}>Content</Content>
+      <Layout hasSider>
+        <Sider style={siderStyle}>Sider</Sider>
+        <Content style={contentStyle}><PokemonList /></Content>
+      </Layout>
       <Footer style={footerStyle}>Footer</Footer>
     </Layout>
+    
   )
 }
 
