@@ -1,7 +1,9 @@
-import { Layout, Row, Col } from 'antd';
+import { Layout } from 'antd';
+import './styles.css'
 import PokemonList from '../../components/pokemon-list/pokemonList.jsx';
+import PokemonSearch from '../../components/pokemon-search/pokemonSearch.jsx';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 const headerStyle = {
   textAlign: 'center',
   color: '#fff',
@@ -9,12 +11,6 @@ const headerStyle = {
   paddingInline: 50,
   lineHeight: '64px',
   backgroundColor: '#7dbcea',
-};
-const siderStyle = {
-  textAlign: 'center',
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#3ba0e9',
 };
 const contentStyle = {
   textAlign: 'center',
@@ -33,11 +29,10 @@ function HomePage () {
   return (
 
     <Layout>
-      <Header style={headerStyle}>Header</Header>
-      <Layout hasSider>
-        <Sider style={siderStyle}>Sider</Sider>
+      <Header style={headerStyle}></Header>
+        <PokemonSearch />
         <Content style={contentStyle}><PokemonList /></Content>
-      </Layout>
+        
       <Footer style={footerStyle}>Footer</Footer>
     </Layout>
     

@@ -14,7 +14,8 @@ function PokemonList() {
       setPokemons(details.map(pokemon => ({
         name: pokemon.name,
         sprite: pokemon.sprites.other["official-artwork"].front_default,
-        type: pokemon.types.map((type) => type.type.name)
+        type: pokemon.types.map((type) => type.type.name),
+        id: pokemon.id
       })));
     }
     fetchData();
@@ -24,8 +25,9 @@ function PokemonList() {
 
     <Row gutter={[16, 16]}>
       {pokemons.map(pokemon => (
-        <Col key={pokemon.name} xs={24} sm={12} md={8} lg={8}>
+        <Col key={pokemon.name} xs={24} sm={12} md={6} lg={6}>
           <CardPokemon
+            pokemonId={pokemon.id}
             pokemonName={pokemon.name}
             pokemonImage={pokemon.sprite}
             pokemonType={pokemon.type}

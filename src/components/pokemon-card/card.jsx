@@ -24,7 +24,7 @@ const typeColors = {
   water: '#4592C4'
 };
 
-function CardPokemon({ pokemonName, pokemonImage, pokemonType }) {
+function CardPokemon({ pokemonName, pokemonImage, pokemonType, pokemonId }) {
   return (
 
 
@@ -33,7 +33,7 @@ function CardPokemon({ pokemonName, pokemonImage, pokemonType }) {
       style={{ width: 240 }}
       bodyStyle={{ padding: '24px 0' }}
     >
-      <Title level={5}>{pokemonName}</Title>
+      <Title level={5}>#{pokemonId} {pokemonName}</Title>
       <div style={{ display:'flex', width:'100%'}}>
       {pokemonType.map(t => (
         <Tag key={t} width={100} color={typeColors[t]} style={{ flex: 1, textAlign: 'center' }}>{t}</Tag>
