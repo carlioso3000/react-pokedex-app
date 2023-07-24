@@ -1,8 +1,8 @@
 
 
-export async function getPokemonList() {
+export async function getPokemonList(offset) {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0/`);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${offset}`);
     const pokemonList = await response.json();
     return pokemonList;
   } catch (error) {
@@ -10,6 +10,8 @@ export async function getPokemonList() {
     return null;
   }
 }
+
+
 console.log(getPokemonList)
 
 export async function getPokemonDetails(pokemonList) {

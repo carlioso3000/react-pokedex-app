@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import './styles.css'
 import PokemonList from '../../components/pokemon-list/pokemonList.jsx';
 import PokemonSearch from '../../components/pokemon-search/pokemonSearch.jsx';
+import PokemonFilter from '../../components/pokemon-filter/pokemonFilter';
 
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
@@ -30,6 +31,7 @@ function HomePage () {
 
     <Layout>
       <Header style={headerStyle}></Header>
+        <PokemonFilter />
         <PokemonSearch />
         <Content style={contentStyle}><PokemonList /></Content>
         
