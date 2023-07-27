@@ -1,4 +1,4 @@
-import PokemonList from './components/pokemon-list/pokemonList.jsx';
+import PokemonList from './components/pokemon-list/defaultPokemonList.jsx';
 import './App.css';
 import HomePage from '../src/pages/homepage/index.jsx';
 

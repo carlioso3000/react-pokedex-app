@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Select } from 'antd';
 
-// const options = [];
-// for (let i = 10; i < 36; i++) {
-//   options.push({
-//     value: i.toString(36) + i,
-//     label: i.toString(36) + i,
-//   });
-// }
-const handleChange = (value) => {
-  console.log(`Selected: ${value}`);
-};
-
-function PokemonFilter() {
+function PokemonFilter({ onSelectType }) {
+  // handles the dropdown component to show all pokemon types from the api
   const [selectOptions, setSelectOptions] = useState([]);
+  
+  const handleChange = (value) => {
+    onSelectType(value);
+  };
 
   useEffect (()=> {
     async function fetchPokemonTypes() {
-      const response = await fetch('https://pokeapi.co/api/v2/type/');
+      const response = await fetch('https://pokeapi.co/api/v2/type/'); // only pokemon types endpoint
       const data = await response.json();
       setSelectOptions(data.results.map(type => ({
         value: type.name,
@@ -26,7 +20,6 @@ function PokemonFilter() {
     }
     fetchPokemonTypes();
   }, [])
-
 
   return (
     <>

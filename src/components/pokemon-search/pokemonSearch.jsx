@@ -1,9 +1,14 @@
-import { Input, Space } from 'antd';
+import { Input } from 'antd';
 import React from 'react';
 const { Search } = Input;
 
-const onSearch = (value) => console.log(value);
-function PokemonSearch() {
+
+function PokemonSearch(props) {
+  const onSearch = (value) => {
+    props.onSearch(value);
+  };
+  
+
   return (
       <Search
       placeholder="type a pokemon name"
