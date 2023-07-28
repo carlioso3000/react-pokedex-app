@@ -25,9 +25,16 @@ function SearchedPokemonList({ searchedPokemon }) {
     fetchData();
   }, []);
 
+
+
   const searchedPokemons = searchedPokemon
     ? pokemons.filter(pokemon => pokemon.name.includes(searchedPokemon))
     : pokemons;
+
+    // gets the view to top of the vh when the current page changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   return (
     <>

@@ -25,6 +25,11 @@ function FilteredPokemonList({ selectedType }) {
     fetchData();
   }, []);
 
+  // gets the view to top of the vh when the current page changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
   const filteredPokemons = selectedType
     ? pokemons.filter(pokemon => pokemon.type.includes(selectedType))
     : pokemons;

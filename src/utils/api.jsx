@@ -33,8 +33,24 @@ async function getPokemonDetails(pokemonList) {
   }
 }
 
+//it provides pokemon stats for PokemonStats Page
+async function getPokemonStats(id){
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+  const pokemonStats = await response.json();
+
+
+  // here i will obtain evolution information
+  const responseForEvolutions = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
+  const speciesData = await responseForEvolutions.json();
+  const evolutionUrl = speciesData.evolution_chain.url;
+  const evolutionRes = await fetch(evolutionUrl)
+  const evolutionData = await evolutionRes.json()
+  return { evolutionData, pokemonStats };
+}
+
 export {
   getPokemonDetails,
   getPokemonList,
-  getAllPokemons
+  getAllPokemons,
+  getPokemonStats
 }

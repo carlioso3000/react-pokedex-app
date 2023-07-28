@@ -26,6 +26,12 @@ function PokemonList() {
     fetchData(currentPage);
   }, [currentPage]);
 
+  // gets the view to top of the vh when the current page changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+  
+
   return(
     <>
       <Row gutter={[16, 16]}>
