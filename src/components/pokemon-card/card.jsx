@@ -1,5 +1,6 @@
-import '../../styles/pokemon-card.css'
+import { useNavigate } from 'react-router-dom';
 import { Card, Tag, Typography } from 'antd';
+import '../../styles/pokemon-card.css'
 const { Title } = Typography;
 
 const typeColors = {
@@ -25,11 +26,16 @@ const typeColors = {
 };
 
 function CardPokemon({ pokemonName, pokemonImage, pokemonType, pokemonId }) {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate(`/pokemon-stats/${pokemonId}`)
+  }
+
   return (
 
 
 <Card
-      cover={<img alt={pokemonName} src={pokemonImage} />}
+      cover={<img onClick={handleClick} alt={pokemonName} src={pokemonImage} />}
       style={{ width: 240 }}
       bodyStyle={{ padding: '24px 0' }}
     >

@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
       <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/pokemon-stats" element={<PokemonStats />} />
+          <Route path="/pokemon-stats/:id" element={<PokemonStats />} />
           {/* <Route path="/pokemon-vs" element={<PokemonVs />} /> */}
         </Routes>
       </BrowserRouter>
