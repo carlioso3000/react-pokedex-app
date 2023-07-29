@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Layout } from 'antd';
 import './styles.css'
+import pokeball from '../../assets/pokeball.png';
 import PokemonList from '../../components/pokemon-list/defaultPokemonList.jsx';
 import PokemonSearch from '../../components/pokemon-search/pokemonSearch.jsx';
 import PokemonFilter from '../../components/droptDown-filter/dropDownFilter';
 import FilteredPokemonList from '../../components/filtered-pokemon-list/filteredPokemonList';
 import SearchedPokemonList from '../../components/searched-pokemon-list/searchedPokemonList';
+import HomePageButton from '../../components/homePageButton/homePageButton';
 
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
-  textAlign: 'center',
+  textAlign: 'start',
   color: '#fff',
   height: 64,
   paddingInline: 50,
@@ -38,7 +40,7 @@ function HomePage () {
   return (
 
     <Layout>
-      <Header style={headerStyle}></Header>
+      <Header style={headerStyle}><HomePageButton/></Header>
         <PokemonFilter 
           onSelectType={setSelectedType} 
         />
