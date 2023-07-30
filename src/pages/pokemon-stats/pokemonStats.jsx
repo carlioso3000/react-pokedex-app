@@ -56,8 +56,11 @@ function PokemonStats() {
       const evolutionData = data.evolutionData; //to obtain evolutions
       const pokemonStats = data.pokemonStats; // obtain general stats
 
-      const goodAgainstTypes = await getGoodAgainstTypes(pokemonStats.types.map(t => t.type));
-      const badAgainstTypes = await getBadAgainstTypes(pokemonStats.types.map(t => t.type));
+      const { goodAgainstTypes, inmuneAgainst } = await getGoodAgainstTypes(pokemonStats.types.map(t => t.type));
+      const { badAgainstTypes, uselessAgainst } = await getBadAgainstTypes(pokemonStats.types.map(t => t.type));
+
+      // const goodAgainstTypes = await getGoodAgainstTypes(pokemonStats.types.map(t => t.type));
+      // const badAgainstTypes = await getBadAgainstTypes(pokemonStats.types.map(t => t.type));
 
 
       //lets find out if there is any evolution
@@ -77,6 +80,7 @@ function PokemonStats() {
 
     evol = evol.evolves_to.length > 0 ? evol.evolves_to[0] : undefined;
   }
+    
       setPokemonData({
         name: pokemonStats.name,
         id: pokemonStats.id,
@@ -92,16 +96,22 @@ function PokemonStats() {
         },
         evolutions: evolutionData.evolutions,
         goodAgainst: goodAgainstTypes,
-        badAgainst: badAgainstTypes
+        inmuneAgainst: inmuneAgainst,
+        badAgainst: badAgainstTypes,
+        uselessAgainst:uselessAgainst
+        
       });
     }
     fetchData();
   }, [id]);
 
-  useEffect(() => {
-    console.log(pokemonData.goodAgainst);
-    console.log(pokemonData.badAgainst);
-  }, [pokemonData.goodAgainst, pokemonData.badAgainst]);
+  // useEffect(() => {
+  //   //console.log("good against: " + pokemonData.goodAgainst);
+  //   console.log("inmune Against: " + pokemonData.inmuneAgainst);
+  //   //console.log("bad against: " + pokemonData.badAgainst);
+  //   console.log("useless Against " + pokemonData.uselessAgainst)
+  // }, [pokemonData.goodAgainst, pokemonData.inmuneAgainst, pokemonData.badAgainst,
+  //   pokemonData.uselessAgainst]);
   
 
 
@@ -113,9 +123,18 @@ function PokemonStats() {
             <img
               src={pokemonData.sprite} 
               alt={pokemonData.name}
-
               style={{ width: "200px", height:"200px"}}
             />
+            <div className='combat-stats'>
+              <ul style={{ display:"flex", width:"100%", color:"black", listStyle:"none", gap:"15px" }}>
+                <li><p>"hp: {pokemonData.combatStats.hp}</p></li>
+                <li><p>"attack: {pokemonData.combatStats.attack}</p></li>
+                <li><p>"defense: {pokemonData.combatStats.defense}</p></li>
+                <li><p>"special attack: {pokemonData.combatStats.specialAttack}</p></li>
+                <li><p>"special defense: {pokemonData.combatStats.specialDefense}</p></li>
+                <li><p>"sped: {pokemonData.combatStats.speed}</p></li>
+              </ul>
+            </div>
           </Content>
         <Footer style={footerStyle}>Footer</Footer>
       </Layout>

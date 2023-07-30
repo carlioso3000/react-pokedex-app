@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllPokemons, getPokemonDetails } from '../../utils/api';
+import { getAllPokemons, getPokemonDetails, getPokemonPerType } from '../../utils/api';
 import { Row, Col, Pagination } from 'antd';
 import CardPokemon from '../pokemon-card/card.jsx';
 
@@ -9,17 +9,25 @@ function FilteredPokemonList({ selectedType }) {
   const [currentPage, setCurrentPage] = useState(1);
   const pokemonsPerPage = 20;
 
+
   async function fetchData() {
-    const data = await getAllPokemons();
-    setTotalPokemons(data.count);
-    const details = await getPokemonDetails(data.results);
-    setPokemons(details.map(pokemon => ({
-      name: pokemon.name,
-      sprite: pokemon.sprites.other["official-artwork"].front_default,
-      type: pokemon.types.map((type) => type.type.name),
-      id: pokemon.id
-    })));
+    const data = await getPokemonPerType(selectedType);
+    setTotalPokemons(data.length);
+    setPokemons(data);
   }
+  
+
+  // async function fetchData() {
+  //   const data = await getAllPokemons();
+  //   setTotalPokemons(data.count);
+  //   const details = await getPokemonDetails(data.results);
+  //   setPokemons(details.map(pokemon => ({
+  //     name: pokemon.name,
+  //     sprite: pokemon.sprites.other["official-artwork"].front_default,
+  //     type: pokemon.types.map((type) => type.type.name),
+  //     id: pokemon.id
+  //   })));
+  // }
 
   useEffect(() => {
     fetchData();
@@ -29,7 +37,7 @@ function FilteredPokemonList({ selectedType }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
-
+  
   const filteredPokemons = selectedType
     ? pokemons.filter(pokemon => pokemon.type.includes(selectedType))
     : pokemons;

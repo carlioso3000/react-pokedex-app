@@ -25,14 +25,35 @@ async function getPokemonList(offset) {
 async function getPokemonDetails(pokemonList) {
   try {
     const promises = pokemonList.map(pokemon => fetch(pokemon.url).then(res => res.json()));
-  const pokemonDetails = await Promise.all(promises);
-  return pokemonDetails;
+    const pokemonDetails = await Promise.all(promises);
+    return pokemonDetails;
   } catch (error) {
     console.error(error);
     return [];
   }
 }
 
+//it provides pokemon filtered per types
+async function getPokemonPerType(type) {
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
+    const data = await response.json();
+    const pokemonData = await Promise.all(data.pokemon.map(async ({ pokemon }) => {
+      const pokemonResponse = await fetch(pokemon.url);
+      const pokemonDetails = await pokemonResponse.json();
+      return {
+        name: pokemonDetails.name,
+        sprite: pokemonDetails.sprites.other["official-artwork"].front_default,
+        type: pokemonDetails.types.map((type) => type.type.name),
+        id: pokemonDetails.id
+      };
+    }));
+    return pokemonData;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
 //it provides pokemon stats for PokemonStats Page
 async function getPokemonStats(id){
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
@@ -52,5 +73,6 @@ export {
   getPokemonDetails,
   getPokemonList,
   getAllPokemons,
-  getPokemonStats
+  getPokemonStats,
+  getPokemonPerType
 }
