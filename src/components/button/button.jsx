@@ -1,6 +1,6 @@
 import { Button} from 'antd';
 
-function NextPrevButton({ text, nextButton, nextOrPrev }) {
+function NextPrevButton({ pokemonText, text, nextButton, nextOrPrev }) {
   return (
     <Button 
       className={nextButton ? "next-button" : "prev-button"}
@@ -9,6 +9,7 @@ function NextPrevButton({ text, nextButton, nextOrPrev }) {
       block
       >
       {text}
+      {pokemonText}
     </Button>
   )
 }

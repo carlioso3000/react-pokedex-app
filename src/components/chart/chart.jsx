@@ -7,7 +7,7 @@ function Chart({ stats }) {
       {Object.entries(stats).map(([statName, statValue]) => (
         <li key={statName} style={{ display: 'flex', alignItems: 'center', height: "40px" }}>
           <div style={{ width: 100, display: "flex", marginLeft: 10 }}>{statName}</div>
-          <div style={{ height: 20, width: statValue * 3, backgroundColor: '#E3350D', borderRadius: 3 }} />
+          <div style={{ height: 20, width: statValue * 3, backgroundColor: '#f8333c', borderRadius: 3 }} />
           <div style={{ marginLeft: 10 }}>{statValue}</div>
         </li>
       ))}

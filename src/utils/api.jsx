@@ -66,7 +66,19 @@ async function getPokemonStats(id){
   const evolutionUrl = speciesData.evolution_chain.url;
   const evolutionRes = await fetch(evolutionUrl)
   const evolutionData = await evolutionRes.json()
-  return { evolutionData, pokemonStats };
+  
+
+  // it obtains the next pokemon name
+  const nextPokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id + 1}/`)
+  const nextPokemonData = await nextPokemonResponse.json();
+  const nextPokemonName = nextPokemonData.name;
+  
+  // it obtains the previous pokemon name
+  const prevPokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id - 1}/`)
+  const prevPokemonData = await prevPokemonResponse.json();
+  const prevPokemonName = prevPokemonData.name;
+
+  return { evolutionData, pokemonStats, nextPokemonName, prevPokemonName };
 }
 
 export {
@@ -74,5 +86,5 @@ export {
   getPokemonList,
   getAllPokemons,
   getPokemonStats,
-  getPokemonPerType
+  getPokemonPerType,
 }

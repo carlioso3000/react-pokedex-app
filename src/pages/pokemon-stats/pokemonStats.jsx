@@ -29,7 +29,7 @@ function PokemonStats() {
     },
     evolutions: [],
     goodAgainst:[],
-    badAgainst:[],
+    badAgainst:[]
     
   })
   // recently added pokemonId as parameter to fetchData and value for const data
@@ -62,7 +62,7 @@ while (evol) {
 
   evol = evol.evolves_to.length > 0 ? evol.evolves_to[0] : undefined;
 }
-  
+
     setPokemonData({
       name: pokemonStats.name,
       id: pokemonStats.id,
@@ -79,8 +79,7 @@ while (evol) {
       evolutions: evolutions,
       goodAgainst: goodAgainstTypes,
       inmuneAgainst: inmuneAgainst,
-      badAgainst: badAgainstTypes,
-      uselessAgainst:uselessAgainst
+      badAgainst: badAgainstTypes
       
     });
   }
@@ -109,20 +108,18 @@ while (evol) {
       <Layout>
         <Header className='header-style'><HomePageButton/></Header>
 
-        <PokemonSearch onSearch={setSearchedPokemon} />
-
         <div className='button-container'>
-          <NextPrevButton text="Prev" nextButton={false} nextOrPrev={getPrevPokemon} />
-          <NextPrevButton text="Next" nextButton={true} nextOrPrev={getNextPokemon} />
+          <NextPrevButton pokemonText={`#${pokemonData.id - 1}`}  text="Prev" nextButton={false} nextOrPrev={getPrevPokemon} />
+          <NextPrevButton pokemonText={`#${pokemonData.id + 1}`} text="Next" nextButton={true} nextOrPrev={getNextPokemon} />
         </div>
 
+        <PokemonSearch onSearch={setSearchedPokemon} />
         <Content className='content-style'>
             <div className='pokemon-container'>
               <h2>{pokemonData.name} #{pokemonData.id}</h2>
               <img
                 src={pokemonData.sprite} 
                 alt={pokemonData.name}
-                style={{ width: "400px", height:"400px"}}
               />
               <div className='pokemon-evolutions'>
                 <div className='evolution-chain-title'>
@@ -130,8 +127,8 @@ while (evol) {
                 </div>
                 <ul>
                   {pokemonData.evolutions.map(evolution => (
-                    <li key={evolution.name} style={{ display:"inline" }}>
-                      <img style={{ width: "140px" }} src={evolution.img} alt={evolution.name} />
+                    <li key={evolution.name}>
+                      <img src={evolution.img} alt={evolution.name} />
                       <div>
                         <p>{evolution.name}</p>
                         <p>#{evolution.id}</p>
@@ -145,7 +142,16 @@ while (evol) {
               <h3>STATS</h3>
               <Chart stats={pokemonData.combatStats} />
               <div className='pokemon-types'>
-                {/* Aquí puedes agregar el contenido del div con clase pokemon-types */}
+                <div className='pokemon-types-types'>
+                  <h3>Types</h3>
+                  
+                </div>
+                <div className='pokemon-types-strengths'>
+                  <h3>Strengths</h3>
+                </div>
+                <div className='pokemon-types-weaknesses'>
+                  <h3>Weaknesses</h3>
+                </div>
               </div>
             </div>
           </Content>
