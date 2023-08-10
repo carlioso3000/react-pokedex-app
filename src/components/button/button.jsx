@@ -11,7 +11,7 @@ function NextPrevButton({ pokemonText, text, nextButton, nextOrPrev }) {
       {text}
       {pokemonText}
     </Button>
-  )
+  );
 }
 
 export default NextPrevButton;

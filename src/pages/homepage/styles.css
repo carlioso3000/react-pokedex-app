@@ -4,3 +4,10 @@
   border: 2px solid black;
   border-radius: 5px;
 }
+.filter-and-searcher-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 0 2px 0;
+}
+

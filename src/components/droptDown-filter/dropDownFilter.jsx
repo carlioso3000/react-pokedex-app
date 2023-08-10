@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../../styles/drop-down-filter.css';
 import { Select } from 'antd';
 
 function PokemonFilter({ onSelectType }) {
@@ -19,7 +20,7 @@ function PokemonFilter({ onSelectType }) {
       })));
     }
     fetchPokemonTypes();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -33,7 +34,7 @@ function PokemonFilter({ onSelectType }) {
         options={selectOptions}
       />
     </>
-  )
+  );
 }
 
 export default PokemonFilter;

@@ -1,0 +1,14 @@
+.ant-input {
+  color: orange;
+  font-weight: bold;
+}
+.ant-btn-primary {
+  background-color: orange;
+  font-weight: bold;
+}
+
+/* Hover */
+:where(.css-dev-only-do-not-override-1jr9qlj).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #fff;
+  background-color: rgba(255, 166, 0, 0.897);
+}

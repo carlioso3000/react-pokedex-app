@@ -7,11 +7,11 @@ function HomePageButton() {
     background: "transparent",
     border: "none",
     cursor: "pointer",
-  }
+  };
   const imgStyle = {
     width: "60px", 
     height: "60px"
-  }
+  };
 
 
   function handleCLick() {
@@ -24,7 +24,7 @@ function HomePageButton() {
         <img src={pokeball} alt='pokeball-button' style={imgStyle}/>
       </button>
     </>
-  )
+  );
 }
 
 export default HomePageButton;

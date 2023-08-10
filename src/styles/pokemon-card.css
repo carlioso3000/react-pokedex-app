@@ -1,8 +1,26 @@
-.card-container {
+
+.ant-card-body {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  align-items: center;
+  color: #a4a4a4;
 }
+
+.ant-card-cover {
+  display: flex;
+  justify-content: center;
+}
+
+.ant-card-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.ant-card-cover img {
+  max-width: 200px;
+}
+
 
 .card {
   display: flex;
@@ -10,21 +28,17 @@
   align-items: center;
   border: solid 1px rgb(0, 162, 255);
   background-color: white;
-  color: black;
   height: 300px;
 }
 
-.ant-card-body {
-  padding: 0;
-}
 
-/*
 
 .card-title {
   font-weight: 700;
   text-transform: capitalize;
   margin-top: 0;
 }
+/*
 .card-body {
   padding: 5px;
 }

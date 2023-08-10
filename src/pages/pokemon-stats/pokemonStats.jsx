@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getPokemonStats } from "../../utils/api"
+import { getPokemonStats } from "../../utils/api";
 import { getGoodAgainstTypes, getBadAgainstTypes } from '../../utils/utils.jsx';
-import { Layout } from 'antd';
+import { Layout, Tag } from 'antd';
 import HomePageButton from "../../components/homePageButton/homePageButton";
 import PokemonSearch from '../../components/pokemon-search/pokemonSearch';
 import NextPrevButton from '../../components/button/button.jsx';
@@ -10,6 +10,28 @@ import Chart from '../../components/chart/chart';
 import './styles.css';
 
 const {Header, Footer, Content } = Layout;
+
+const typeColors = {
+  bug: '#729F3F',
+  dark: '#707070',
+  dragon: '#F16E57',
+  electric: '#EED535',
+  fairy: '#FDB9E9',
+  fighting: '#D56723',
+  fire: '#FD7D24',
+  flying: '#BDB9B8',
+  ghost: '#7B62A3',
+  grass: '#9BCC50',
+  ground: '#AB9842',
+  ice: '#50C3E7',
+  normal: '#A4ACAF',
+  poison: '#B87FC8',
+  psychic: '#F366B9',
+  rock: '#A38C21',
+  shadow: '#729F3F',
+  steel: '#9EB7B8',
+  water: '#4592C4'
+};
 
 function PokemonStats() {
   const [searchedPokemon, setSearchedPokemon] = useState("");
@@ -31,7 +53,7 @@ function PokemonStats() {
     goodAgainst:[],
     badAgainst:[]
     
-  })
+  });
   // recently added pokemonId as parameter to fetchData and value for const data
   async function fetchData(pokemonId) {
     const data = await getPokemonStats(searchedPokemon ||  pokemonId || id);
@@ -100,8 +122,6 @@ while (evol) {
   function getPrevPokemon() {
     fetchData(pokemonData.id - 1);
   }
-  
-  
 
   return(
     <>
@@ -113,7 +133,12 @@ while (evol) {
           <NextPrevButton pokemonText={`#${pokemonData.id + 1}`} text="Next" nextButton={true} nextOrPrev={getNextPokemon} />
         </div>
 
-        <PokemonSearch onSearch={setSearchedPokemon} />
+        <div className='filter-and-searcher-container'>
+          <PokemonSearch 
+            onSearch={setSearchedPokemon}
+          />
+        </div>
+        
         <Content className='content-style'>
             <div className='pokemon-container'>
               <h2>{pokemonData.name} #{pokemonData.id}</h2>
@@ -142,24 +167,49 @@ while (evol) {
               <h3>STATS</h3>
               <Chart stats={pokemonData.combatStats} />
               <div className='pokemon-types'>
-                <div className='pokemon-types-types'>
-                  <h3>Types</h3>
-                  
-                </div>
+
+                  <div className='pokemon-types-types'>
+                    <div className='pokemon-types-title'>
+                      <h3>Types</h3>
+                    </div>
+                    <div className='pokemon-types-tags'>
+                      {pokemonData.type.map(t => (
+                        <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
+                      ))}
+                    </div>
+                  </div>
+                
+                
                 <div className='pokemon-types-strengths'>
-                  <h3>Strengths</h3>
-                </div>
-                <div className='pokemon-types-weaknesses'>
-                  <h3>Weaknesses</h3>
-                </div>
+                    <div className='pokemon-types-title'>
+                      <h3>Strengths</h3>
+                    </div>
+                    <div className='pokemon-types-tags'>
+                      {pokemonData.goodAgainst.map(t => (
+                        <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
+                      ))}
+                    </div>
+                  </div>
+                
+                  <div className='pokemon-types-weaknesses'>
+                    <div className='pokemon-types-title'>
+                      <h3>Weaknesses</h3>
+                    </div>
+                    <div className='pokemon-types-tags'>
+                      {pokemonData.badAgainst.map(t => (
+                        <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
+                      ))}
+                    </div>
+                  </div>
               </div>
             </div>
           </Content>
         <Footer className='footer-style'>Footer</Footer>
       </Layout>
     </>
-  )
+  );
 
 }
 
 export default PokemonStats;
+

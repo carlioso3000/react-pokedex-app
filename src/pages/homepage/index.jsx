@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Layout } from 'antd';
-import './styles.css'
+import './styles.css';
 import pokeball from '../../assets/pokeball.png';
 import PokemonList from '../../components/pokemon-list/defaultPokemonList.jsx';
 import PokemonSearch from '../../components/pokemon-search/pokemonSearch.jsx';
@@ -13,10 +13,10 @@ const { Header, Footer, Content } = Layout;
 const headerStyle = {
   textAlign: 'start',
   color: '#fff',
-  height: 64,
+  height: 80,
   paddingInline: 50,
   lineHeight: '64px',
-  backgroundColor: '#7dbcea',
+  backgroundColor: '#274c77',
 };
 const contentStyle = {
   textAlign: 'center',
@@ -28,7 +28,7 @@ const contentStyle = {
 const footerStyle = {
   textAlign: 'center',
   color: '#fff',
-  backgroundColor: '#7dbcea',
+  backgroundColor: '#274c77',
 };
 
 
@@ -41,13 +41,15 @@ function HomePage () {
 
     <Layout>
       <Header style={headerStyle}><HomePageButton/></Header>
-        <PokemonFilter 
-          onSelectType={setSelectedType} 
-        />
+        <div className='filter-and-searcher-container'>
+          <PokemonFilter 
+            onSelectType={setSelectedType} 
+          />
 
-        <PokemonSearch 
-          onSearch={setSearchedPokemon}
-        />
+          <PokemonSearch 
+            onSearch={setSearchedPokemon}
+          />
+        </div>
 
         <Content 
           style={contentStyle}>
@@ -64,7 +66,7 @@ function HomePage () {
       <Footer style={footerStyle}>Footer</Footer>
     </Layout>
     
-  )
+  );
 }
 
 export default HomePage;

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Card, Tag, Typography } from 'antd';
-import '../../styles/pokemon-card.css'
+import '../../styles/pokemon-card.css';
 const { Title } = Typography;
 
 const typeColors = {
@@ -28,7 +28,7 @@ const typeColors = {
 function CardPokemon({ pokemonName, pokemonImage, pokemonType, pokemonId }) {
   const navigate = useNavigate();
   function handleClick() {
-    navigate(`/pokemon-stats/${pokemonId}`)
+    navigate(`/pokemon-stats/${pokemonId}`);
   }
 
   return (
@@ -36,17 +36,15 @@ function CardPokemon({ pokemonName, pokemonImage, pokemonType, pokemonId }) {
 
 <Card
       cover={<img onClick={handleClick} alt={pokemonName} src={pokemonImage} />}
-      style={{ width: 240 }}
-      bodyStyle={{ padding: '24px 0' }}
     >
-      <Title level={5}>#{pokemonId} {pokemonName}</Title>
+      <Title level={5}>#{pokemonId} {pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)}</Title>
       <div style={{ display:'flex', width:'100%'}}>
       {pokemonType.map(t => (
         <Tag key={t} width={100} color={typeColors[t]} style={{ flex: 1, textAlign: 'center' }}>{t}</Tag>
       ))}
       </div>
     </Card>
-  )
+  );
 }
 
 export default CardPokemon;
