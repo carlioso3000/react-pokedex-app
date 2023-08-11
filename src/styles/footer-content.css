@@ -1,0 +1,29 @@
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-content-information {
+  text-align: center;
+  font-weight: bold;
+  color: rgb(196, 196, 196);
+}
+
+.footer-content-icons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 70px;
+  font-size: xx-large;
+}
+.footer-content-icons a {
+  color: gray;
+}
+.footer-content-icons a:hover {
+  color: rgba(128, 128, 128, 0.596);
+}
+.footer-content-icons > * {
+  margin-left: 30px;
+}

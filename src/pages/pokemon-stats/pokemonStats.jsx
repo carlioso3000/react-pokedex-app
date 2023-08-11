@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getPokemonStats } from "../../utils/api";
 import { getGoodAgainstTypes, getBadAgainstTypes } from '../../utils/utils.jsx';
 import { Layout, Tag } from 'antd';
+import { headerStyle, contentStyle, footerStyle } from '../../styles/layoutStyles';
 import HomePageButton from "../../components/homePageButton/homePageButton";
 import PokemonSearch from '../../components/pokemon-search/pokemonSearch';
 import NextPrevButton from '../../components/button/button.jsx';
@@ -126,7 +127,9 @@ while (evol) {
   return(
     <>
       <Layout>
-        <Header className='header-style'><HomePageButton/></Header>
+      <Header style={headerStyle}>
+        <HomePageButton/>
+      </Header>
 
         <div className='button-container'>
           <NextPrevButton pokemonText={`#${pokemonData.id - 1}`}  text="Prev" nextButton={false} nextOrPrev={getPrevPokemon} />

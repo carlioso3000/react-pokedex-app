@@ -2,7 +2,12 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-weight: bold;
   flex: 1;
   color: orange;
   pointer-events: none;
+}
+.ant-select-item-option-content {
+  color: gray;
+  font-weight: 700;
 }

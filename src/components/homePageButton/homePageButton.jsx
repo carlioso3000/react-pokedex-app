@@ -23,6 +23,7 @@ function HomePageButton() {
       <button onClick={handleCLick} style={buttonStyle}>
         <img src={pokeball} alt='pokeball-button' style={imgStyle}/>
       </button>
+      <h1 onClick={handleCLick}>Pokedex</h1>
     </>
   );
 }

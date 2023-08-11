@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Layout } from 'antd';
+import { headerStyle, contentStyle, footerStyle } from '../../styles/layoutStyles';
 import './styles.css';
 import pokeball from '../../assets/pokeball.png';
 import PokemonList from '../../components/pokemon-list/defaultPokemonList.jsx';
@@ -8,29 +9,9 @@ import PokemonFilter from '../../components/droptDown-filter/dropDownFilter';
 import FilteredPokemonList from '../../components/filtered-pokemon-list/filteredPokemonList';
 import SearchedPokemonList from '../../components/searched-pokemon-list/searchedPokemonList';
 import HomePageButton from '../../components/homePageButton/homePageButton';
+import FooterContent from '../../components/footer-content/footerContent';
 
 const { Header, Footer, Content } = Layout;
-const headerStyle = {
-  textAlign: 'start',
-  color: '#fff',
-  height: 80,
-  paddingInline: 50,
-  lineHeight: '64px',
-  backgroundColor: '#274c77',
-};
-const contentStyle = {
-  textAlign: 'center',
-  minHeight: 120,
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#e5e5e5',
-};
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#274c77',
-};
-
 
 function HomePage () {
   const [selectedType, setSelectedType] = useState(null);
@@ -40,7 +21,9 @@ function HomePage () {
   return (
 
     <Layout>
-      <Header style={headerStyle}><HomePageButton/></Header>
+      <Header style={headerStyle}>
+        <HomePageButton/>
+      </Header>
         <div className='filter-and-searcher-container'>
           <PokemonFilter 
             onSelectType={setSelectedType} 
@@ -63,7 +46,7 @@ function HomePage () {
   )}
         </Content>
         
-      <Footer style={footerStyle}>Footer</Footer>
+      <Footer style={footerStyle}><FooterContent /></Footer>
     </Layout>
     
   );
