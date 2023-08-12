@@ -55,7 +55,7 @@
 .pokemon-evolutions {
   width: 100%;
   height: 250px;
-  background-color: #3860AA;
+  background-color: #3860aa3a;
   border-radius: 10px;
 }
 .pokemon-types {
@@ -64,15 +64,6 @@
   background-color: orange;
 }
 
-/* li:not(:last-child)::after {
-  content: ">";
-  color: #b2b2b2;
-  font-size: 40px;
-  font-weight: 700;
-  display: inline-block;
-  margin-left: 5px;
-  vertical-align: middle;
-} */
 .evolution-chain-title {
   display: flex;
   height: 50px;

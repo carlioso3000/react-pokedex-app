@@ -55,30 +55,21 @@ async function getPokemonPerType(type) {
   }
 }
 //it provides pokemon stats for PokemonStats Page
-async function getPokemonStats(id){
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+async function getPokemonStats(pokemon){
+  const isId = !isNaN(pokemon);
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${isId ? pokemon : pokemon.toLowerCase()}/`);
   const pokemonStats = await response.json();
 
 
   // here i will obtain evolution information
-  const responseForEvolutions = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
+  const responseForEvolutions = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${isId ? pokemon : pokemon.toLowerCase()}/`);
   const speciesData = await responseForEvolutions.json();
   const evolutionUrl = speciesData.evolution_chain.url;
   const evolutionRes = await fetch(evolutionUrl);
   const evolutionData = await evolutionRes.json();
   
 
-  // it obtains the next pokemon name
-  const nextPokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id + 1}/`);
-  const nextPokemonData = await nextPokemonResponse.json();
-  const nextPokemonName = nextPokemonData.name;
-  
-  // it obtains the previous pokemon name
-  const prevPokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id - 1}/`);
-  const prevPokemonData = await prevPokemonResponse.json();
-  const prevPokemonName = prevPokemonData.name;
-
-  return { evolutionData, pokemonStats, nextPokemonName, prevPokemonName };
+  return { evolutionData, pokemonStats };
 }
 
 export {

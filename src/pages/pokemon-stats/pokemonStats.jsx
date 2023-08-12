@@ -8,6 +8,7 @@ import HomePageButton from "../../components/homePageButton/homePageButton";
 import PokemonSearch from '../../components/pokemon-search/pokemonSearch';
 import NextPrevButton from '../../components/button/button.jsx';
 import Chart from '../../components/chart/chart';
+import FooterContent from '../../components/footer-content/footerContent';
 import './styles.css';
 
 const {Header, Footer, Content } = Layout;
@@ -64,8 +65,6 @@ function PokemonStats() {
     const { goodAgainstTypes, inmuneAgainst } = await getGoodAgainstTypes(pokemonStats.types.map(t => t.type));
     const { badAgainstTypes, uselessAgainst } = await getBadAgainstTypes(pokemonStats.types.map(t => t.type));
 
-    // const goodAgainstTypes = await getGoodAgainstTypes(pokemonStats.types.map(t => t.type));
-    // const badAgainstTypes = await getBadAgainstTypes(pokemonStats.types.map(t => t.type));
 
 
     //lets find out if there is any evolution
@@ -117,10 +116,12 @@ while (evol) {
 
 
   function getNextPokemon() {
+    setSearchedPokemon("");
     fetchData(pokemonData.id + 1);
   }
   
   function getPrevPokemon() {
+    setSearchedPokemon("");
     fetchData(pokemonData.id - 1);
   }
 
@@ -156,7 +157,12 @@ while (evol) {
                 <ul>
                   {pokemonData.evolutions.map(evolution => (
                     <li key={evolution.name}>
-                      <img src={evolution.img} alt={evolution.name} />
+                      <img 
+                        src={evolution.img} 
+                        alt={evolution.name} 
+                        onClick={() => {
+                          fetchData(evolution.id);
+                        }}/>
                       <div>
                         <p>{evolution.name}</p>
                         <p>#{evolution.id}</p>
@@ -207,7 +213,7 @@ while (evol) {
               </div>
             </div>
           </Content>
-        <Footer className='footer-style'>Footer</Footer>
+        <Footer style={footerStyle}><FooterContent /></Footer>
       </Layout>
     </>
   );

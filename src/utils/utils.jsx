@@ -5,7 +5,7 @@ async function getGoodAgainstTypes(pokemonTypes) {
   for (const type of pokemonTypes) {
     const response = await fetch(type.url);
     const typeData = await response.json();
-
+    console.log(typeData);
     const doubleDamageTo = typeData.damage_relations.double_damage_to;
     const halfDamageFrom = typeData.damage_relations.half_damage_from;
     for (const targetType of doubleDamageTo) {
@@ -43,10 +43,14 @@ async function getBadAgainstTypes(pokemonTypes) {
     const doubleDamageFrom = typeData.damage_relations.double_damage_from;
     const halfDamageTo = typeData.damage_relations.half_damage_to;
     for(const targetType of doubleDamageFrom) {
-      badAgainstTypes.push(targetType.name);
+      if(!badAgainstTypes.includes(targetType)) {
+        badAgainstTypes.push(targetType.name);
+      }
     }
     for (const targetType of halfDamageTo) {
-      badAgainstTypes.push(targetType.name);
+      if (!badAgainstTypes.includes(targetType.name)) {
+        badAgainstTypes.push(targetType.name);
+      }
     }
     // it checks if there are other pokemons inmune to this one
     const uselessTo = typeData.damage_relations.no_damage_to;
