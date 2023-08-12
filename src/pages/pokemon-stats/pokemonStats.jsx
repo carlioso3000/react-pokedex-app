@@ -159,8 +159,8 @@ while (evol) {
       </Header>
 
         <div className='button-container'>
-          <NextPrevButton pokemonText={`#${pokemonData.id - 1}`}  text="Prev" nextButton={false} nextOrPrev={getPrevPokemon} />
-          <NextPrevButton pokemonText={`#${pokemonData.id + 1}`} text="Next" nextButton={true} nextOrPrev={getNextPokemon} />
+          <NextPrevButton pokemonText={` #${pokemonData.id - 1}`}  text="Prev" nextButton={false} nextOrPrev={getPrevPokemon} />
+          <NextPrevButton pokemonText={` #${pokemonData.id + 1}`} text="Next" nextButton={true} nextOrPrev={getNextPokemon} />
         </div>
 
         <div className='filter-and-searcher-container'>
@@ -180,22 +180,26 @@ while (evol) {
                 <div className='evolution-chain-title'>
                   <h3>Evolutions</h3>
                 </div>
-                <ul>
-                  {pokemonData.evolutions.map(evolution => (
-                    <li key={evolution.name}>
-                      <img 
-                        src={evolution.img} 
-                        alt={evolution.name} 
-                        onClick={() => {
-                          fetchData(evolution.id);
-                        }}/>
-                      <div>
-                        <p>{evolution.name}</p>
-                        <p>#{evolution.id}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                {pokemonData.evolutions.length > 0 ? (
+                  <ul>
+                    {pokemonData.evolutions.map(evolution => (
+                      <li key={evolution.name}>
+                        <img 
+                          src={evolution.img} 
+                          alt={evolution.name} 
+                          onClick={() => {
+                            fetchData(evolution.id);
+                          }}/>
+                        <div>
+                          <p>{evolution.name}</p>
+                          <p>#{evolution.id}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>This pokemon has no evolutions</p>
+                )}
               </div>
             </div>
             <div className='stats-container'>
@@ -226,7 +230,7 @@ while (evol) {
                           <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
                         ))
                       ) : (
-                        <p>This Pokémon is not strong against any other type of Pokémon.</p>
+                        <p>This Pokémon has not strengths against any other type of Pokémon.</p>
                       )}
                     </div>
                   </div>
@@ -236,11 +240,42 @@ while (evol) {
                       <h3>Weaknesses</h3>
                     </div>
                     <div className='pokemon-types-tags'>
-                      {[...pokemonData.badAgainst].map(t => (
+                      {[...pokemonData.badAgainst].map(t => ( // keep an eye here
                         <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
                       ))}
                     </div>
                   </div>
+                      
+                  {/* <div className='pokemon-types-inmune'>
+                    <div className='pokemon-types-title'>
+                      <h3>Inmune</h3>
+                    </div>
+                    <div className='pokemon-types-tags'>
+                      {pokemonData.inmuneAgainst.length > 0 ? (
+                        pokemonData.inmuneAgainst.map(t => (
+                          <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
+                        ))
+                      ) : (
+                        <p>Has no inmunity</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className='pokemon-types-vulnerable'>
+                    <div className='pokemon-types-title'>
+                      <h3>Vulnerable</h3>
+                    </div>
+                    <div className='pokemon-types-tags'>
+                      {pokemonData.uselessAgainst.length > 0 ? (
+                        pokemonData.uselessAgainst.map(t => (
+                          <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
+                        ))
+                      ) : (
+                        <p>Not vulnerable against other types</p>
+                      )}
+                    </div>
+                  </div> */}
+
               </div>
             </div>
           </Content>

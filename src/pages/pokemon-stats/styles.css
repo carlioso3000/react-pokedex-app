@@ -2,6 +2,7 @@
   background-color: #2f2f2f;
 }
 
+
 .header-style {
   text-align: start;
   color: #fff;
@@ -23,7 +24,7 @@
   min-height: 120;
   line-height: 60px;
   color: #000000;
-  background-color: #e2e2e2;
+  background-color: #ffa500;
   
 }
 .content-style img {
@@ -60,8 +61,14 @@
 }
 .pokemon-types {
   width: 100%;
-  height: 200px;
-  background-color: orange;
+}
+
+.pokemon-types > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .evolution-chain-title {
@@ -69,12 +76,15 @@
   height: 50px;
 }
 .evolution-chain-title h3 {
-  margin: auto 0 auto 0;
+  font-size: x-large;
+  margin: auto;
   padding-left: 20px;
   line-height: 50px;
 }
 .pokemon-evolutions ul {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .pokemon-evolutions ul li img {
   margin: 0 20px;
@@ -95,22 +105,20 @@
   font-weight: 700;
 }
 
-.pokemon-types-types, 
-.pokemon-types-strengths,
-.pokemon-types-weaknesses {
-  display: flex;
-  align-items: center;
-}
+
 
 .pokemon-types-title {
   width: 100px;
+  margin-bottom: 5px;
+  line-height: 10px;
 }
 .pokemon-types-tags {
-  width: calc(100% - 120px);
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: 1.2em;
+  width: calc(100% - 10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.2em;
+    width: 140px;
 }
 .pokemon-types-tags span {
   display: flex;
@@ -123,7 +131,7 @@
   height: 30px;
 }
 .pokemon-types-weaknesses .pokemon-types-tags {
-    width: calc(100% - 120px);
+    width: calc(100% - 1px);
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
@@ -131,5 +139,16 @@
     font-size: 1.2em;
 }
 .pokemon-types-weaknesses .pokemon-types-tags span {
-  width: 140px;
+  width: 100px;
+}
+.pokemon-types-strengths .pokemon-types-tags {
+  width: calc(100% - 1px);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.2em;
+}
+.pokemon-types-strengths .pokemon-types-tags span {
+width: 100px;
 }
