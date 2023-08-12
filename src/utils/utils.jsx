@@ -35,32 +35,28 @@ async function getGoodAgainstTypes(pokemonTypes) {
 
 //obtain bad against types from pokeapi
 async function getBadAgainstTypes(pokemonTypes) {
-  const badAgainstTypes = [];
-  const uselessAgainst = [];
+  const badAgainstTypes = new Set();
+  const uselessAgainst = new Set();
   for (const type of pokemonTypes) {
     const response = await fetch(type.url);
     const typeData = await response.json();
     const doubleDamageFrom = typeData.damage_relations.double_damage_from;
     const halfDamageTo = typeData.damage_relations.half_damage_to;
-    for(const targetType of doubleDamageFrom) {
-      if(!badAgainstTypes.includes(targetType)) {
-        badAgainstTypes.push(targetType.name);
-      }
+    for (const targetType of doubleDamageFrom) {
+      badAgainstTypes.add(targetType.name);
     }
     for (const targetType of halfDamageTo) {
-      if (!badAgainstTypes.includes(targetType.name)) {
-        badAgainstTypes.push(targetType.name);
-      }
+      badAgainstTypes.add(targetType.name);
     }
     // it checks if there are other pokemons inmune to this one
     const uselessTo = typeData.damage_relations.no_damage_to;
-    for(const targetType of uselessTo) {
-      uselessAgainst.push(targetType.name);
+    for (const targetType of uselessTo) {
+      uselessAgainst.add(targetType.name);
     }
   }
   return {
-    badAgainstTypes,
-    uselessAgainst
+    badAgainstTypes: Array.from(badAgainstTypes),
+    uselessAgainst: Array.from(uselessAgainst)
   };
 }
 

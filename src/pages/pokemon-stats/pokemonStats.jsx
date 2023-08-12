@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getPokemonStats } from "../../utils/api";
 import { getGoodAgainstTypes, getBadAgainstTypes } from '../../utils/utils.jsx';
@@ -36,8 +36,9 @@ const typeColors = {
 };
 
 function PokemonStats() {
-  const [searchedPokemon, setSearchedPokemon] = useState("");
+  const [searchedPokemon, setSearchedPokemon] = useState(""); //keep an eye on this state
   const { id } = useParams();
+  const navigate = useNavigate();
   const [pokemonData, setPokemonData] = useState({
     name: "",
     id: 0,
@@ -58,7 +59,8 @@ function PokemonStats() {
   });
   // recently added pokemonId as parameter to fetchData and value for const data
   async function fetchData(pokemonId) {
-    const data = await getPokemonStats(searchedPokemon ||  pokemonId || id);
+    const data = await getPokemonStats(searchedPokemon.trim() ? searchedPokemon : (pokemonId || id));
+
     const evolutionData = data.evolutionData; //to obtain evolutions
     const pokemonStats = data.pokemonStats; // obtain general stats
 
@@ -101,7 +103,8 @@ while (evol) {
       evolutions: evolutions,
       goodAgainst: goodAgainstTypes,
       inmuneAgainst: inmuneAgainst,
-      badAgainst: badAgainstTypes
+      badAgainst: badAgainstTypes,
+      uselessAgainst: uselessAgainst
       
     });
   }
@@ -110,19 +113,42 @@ while (evol) {
     fetchData();
   }, [id]);
 
+  //eliminar
   useEffect(() => {
     fetchData();
   }, [searchedPokemon]);
+  //eliminar
 
 
   function getNextPokemon() {
     setSearchedPokemon("");
-    fetchData(pokemonData.id + 1);
+    const nextId = pokemonData.id + 1;
+    fetchData(nextId);
+    console.log('Navigating to:', `/pokemon-stats/${nextId}`);
+    navigate(`/pokemon-stats/${nextId}`);
   }
   
   function getPrevPokemon() {
     setSearchedPokemon("");
-    fetchData(pokemonData.id - 1);
+    const prevId = pokemonData.id - 1;
+    fetchData(prevId);
+    console.log('Navigating to:', `/pokemon-stats/${prevId}`);
+    navigate(`/pokemon-stats/${prevId}`);
+  }
+  
+
+
+  async function handleSearch(pokemonName) {
+    // Get the ID of the searched Pokémon using the PokeAPI
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
+    const data = await response.json();
+    const pokemonId = data.id;
+  
+    // Update the URL with the ID of the searched Pokémon
+    navigate(`/pokemon-stats/${pokemonId}`);
+  
+    // Fetch the data of the searched Pokémon
+    fetchData(pokemonId);
   }
 
   return(
@@ -139,7 +165,7 @@ while (evol) {
 
         <div className='filter-and-searcher-container'>
           <PokemonSearch 
-            onSearch={setSearchedPokemon}
+            onSearch={/*setSearchedPokemon*/handleSearch}
           />
         </div>
         
@@ -193,10 +219,15 @@ while (evol) {
                     <div className='pokemon-types-title'>
                       <h3>Strengths</h3>
                     </div>
+                    
                     <div className='pokemon-types-tags'>
-                      {pokemonData.goodAgainst.map(t => (
-                        <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
-                      ))}
+                      {pokemonData.goodAgainst.length > 0 ? (
+                        pokemonData.goodAgainst.map(t => (
+                          <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
+                        ))
+                      ) : (
+                        <p>This Pokémon is not strong against any other type of Pokémon.</p>
+                      )}
                     </div>
                   </div>
                 
@@ -205,7 +236,7 @@ while (evol) {
                       <h3>Weaknesses</h3>
                     </div>
                     <div className='pokemon-types-tags'>
-                      {pokemonData.badAgainst.map(t => (
+                      {[...pokemonData.badAgainst].map(t => (
                         <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
                       ))}
                     </div>
