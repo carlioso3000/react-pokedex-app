@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { getAllPokemons, getPokemonDetails } from '../../utils/api';
 import { Row, Col, Pagination } from 'antd';
 import CardPokemon from '../pokemon-card/card.jsx';
+import Loader from '../loader/loader';
 
 function SearchedPokemonList({ searchedPokemon }) {
   const [pokemons, setPokemons] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [totalPokemons, setTotalPokemons] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const pokemonsPerPage = 20;
 
   async function fetchData() {
+    setIsLoading(true);
     const data = await getAllPokemons();
     setTotalPokemons(data.count);
     const details = await getPokemonDetails(data.results);
@@ -19,6 +22,7 @@ function SearchedPokemonList({ searchedPokemon }) {
       type: pokemon.types.map((type) => type.type.name),
       id: pokemon.id
     })));
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -38,7 +42,10 @@ function SearchedPokemonList({ searchedPokemon }) {
 
   return (
     <>
-      <Row gutter={[16, 16]}>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Row gutter={[16, 16]}>
         {searchedPokemons.slice((currentPage - 1) * pokemonsPerPage, currentPage * pokemonsPerPage).map(pokemon => (
           <Col key={pokemon.name} xs={24} sm={12} md={6} lg={4}>
             <CardPokemon
@@ -49,7 +56,8 @@ function SearchedPokemonList({ searchedPokemon }) {
             />
           </Col>
         ))}
-      </Row>
+        </Row>
+      )}
       <Pagination
         current={currentPage}
         total={totalPokemons}

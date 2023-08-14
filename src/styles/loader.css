@@ -1,0 +1,54 @@
+.loader-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loader-text {
+  font-family: 'Pocket Monk', sans-serif;
+  font-size: xxx-large;
+  color: #383b4f;
+}
+
+.pokeball {
+  width: 250px;
+  height: 250px;
+  border: 13px solid #383b4f;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    #f51939 125px,
+    white 125px
+  );
+  position: relative;
+  animation: load 2s infinite;
+}
+@keyframes load {
+  50%{
+    transform: scale(0.9)
+  }
+}
+.pokeball:before {
+  position: absolute;
+  content: "";
+  height: 25px;
+  width: 100%;
+  background-color: #383b4f;
+  top: calc(50% - 12.5px);
+  left: 0;
+}
+.pokeball:after {
+  position: absolute;
+  content: "";
+  height: 36%;
+  width: 36%;
+  background-image: radial-gradient(
+  #ffffff 0px, #ffffff 10px,
+  #383b4f 10px, #383b4f 15px,
+  #ffffff 15px, #ffffff 32px,
+  #383b4f 32px
+  );
+  border-radius: 50%;
+  top: calc(50% - 18%);
+  left: calc(50% - 18%);
+}

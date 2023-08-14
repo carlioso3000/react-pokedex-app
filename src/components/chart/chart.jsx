@@ -1,17 +1,24 @@
 import React from 'react';
+import '../../styles/chart.css';
 
 
 function Chart({ stats }) {
   return (
-    <ul style={{ backgroundColor: "#a4a4a4", borderRadius: "10px", listStyle: 'none', padding: 0 }}>
-      {Object.entries(stats).map(([statName, statValue]) => (
-        <li key={statName} style={{ display: 'flex', alignItems: 'center', height: "40px" }}>
-          <div style={{ width: 100, display: "flex", marginLeft: 10 }}>{statName}</div>
-          <div style={{ height: 20, width: statValue * 3, backgroundColor: '#f8333c', borderRadius: 3 }} />
-          <div style={{ marginLeft: 10 }}>{statValue}</div>
-        </li>
-      ))}
-    </ul>
+    <div className="chart-container">
+      <div className="chart-names">
+        {Object.keys(stats).map(statName => (
+          <div key={statName}>{statName}</div>
+        ))}
+      </div>
+      <div className="chart-bars">
+        {Object.entries(stats).map(([statName, statValue]) => (
+          <div key={statName} className="chart-bar">
+            <div style={{ width: 20, height: statValue * 3, backgroundColor: '#f8333c', borderRadius: 3 }} />
+            <div className="chart-value">{statValue}</div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

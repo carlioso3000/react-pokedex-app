@@ -171,7 +171,11 @@ while (evol) {
         
         <Content className='content-style'>
             <div className='pokemon-container'>
-              <h2>{pokemonData.name} #{pokemonData.id}</h2>
+              <h2>
+                {pokemonData.name} <span className='pokemon-id'>
+                  #{pokemonData.id.toString().padStart(4, '0')}
+                </span>
+              </h2>
               <img
                 src={pokemonData.sprite} 
                 alt={pokemonData.name}
@@ -191,8 +195,7 @@ while (evol) {
                             fetchData(evolution.id);
                           }}/>
                         <div>
-                          <p>{evolution.name}</p>
-                          <p>#{evolution.id}</p>
+                          <p>{evolution.name} <span className='pokemon-id'>#{evolution.id}</span></p>
                         </div>
                       </li>
                     ))}

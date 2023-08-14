@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { getPokemonDetails, getPokemonList } from '../../utils/api.jsx';
 import { Row, Col, Pagination } from 'antd';
 import CardPokemon from '../pokemon-card/card.jsx';
+import Loader from '../loader/loader.jsx';
 
 function PokemonList() {
   const [pokemons, setPokemons] = useState([]); 
+  const [isLoading, setIsLoading] = useState(true);
   const [totalPokemons, setTotalPokemons] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const pokemonsPerPage = 50;
   
   async function fetchData() {
+    setIsLoading(true);
     const offset = (currentPage - 1) * pokemonsPerPage;
     const data = await getPokemonList(offset);
     setTotalPokemons(data.count);
@@ -20,7 +23,14 @@ function PokemonList() {
       type: pokemon.types.map((type) => type.type.name),
       id: pokemon.id
     })));
+    setIsLoading(false);
   }
+
+  // // set the Loading state of the app to show or not the Loader component
+  // useEffect (()=> {
+
+  // })
+
 
   useEffect(() => {
     fetchData(currentPage);
@@ -34,7 +44,10 @@ function PokemonList() {
 
   return(
     <>
-      <Row gutter={[16, 16]}>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Row gutter={[16, 16]}>
         {pokemons.map(pokemon => (
           <Col key={pokemon.name} xs={24} sm={12} md={6} lg={4}>
             <CardPokemon
@@ -45,7 +58,8 @@ function PokemonList() {
             />
           </Col>
         ))}
-      </Row>
+        </Row>
+      )}
       <Pagination 
         current={currentPage}
         total={totalPokemons}

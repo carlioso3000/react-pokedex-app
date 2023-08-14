@@ -45,13 +45,19 @@
 }
 .pokemon-container {
   width: 50%;
+  text-transform: capitalize;
+}
+.pokemon-container h2 {
+  margin: 0;
+}
+.pokemon-id {
+  color: rgb(100, 100, 100);
 }
 .stats-container {
   width: 50%;
 }
 .stats-container h3 {
-  display: flex;
-  margin-left: 20px;
+  margin: 0;
 }
 .pokemon-evolutions {
   width: 100%;
@@ -85,10 +91,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: capitalize;
 }
 .pokemon-evolutions ul li img {
   margin: 0 20px;
   width: 140px;
+  cursor: pointer;
+  transition: transform .2s ease-in-out;
+}
+.pokemon-evolutions ul li img:hover {
+  transform: translateY(-5px);
 }
 .pokemon-evolutions ul li {
   display: flex;
