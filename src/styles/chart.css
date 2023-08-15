@@ -1,15 +1,34 @@
 .chart-container {
+  padding: 20px;
+  max-width: 550px;
+  height: 400px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+}
+
+.chart-stat-title {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .chart-names {
+  text-transform: capitalize;
+  line-height: normal;
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-
+.chart-names > div {
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  flex-wrap: wrap;
+}
 .chart-bars {
   display: flex;
   justify-content: space-between;

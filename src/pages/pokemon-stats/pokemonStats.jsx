@@ -180,6 +180,15 @@ while (evol) {
                 src={pokemonData.sprite} 
                 alt={pokemonData.name}
               />
+
+              <div className='pokemon-types-types'>
+                    <div className='pokemon-types-tags'>
+                      {pokemonData.type.map(t => (
+                        <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
+                      ))}
+                    </div>
+                  </div>
+
               <div className='pokemon-evolutions'>
                 <div className='evolution-chain-title'>
                   <h3>Evolutions</h3>
@@ -210,16 +219,7 @@ while (evol) {
               <Chart stats={pokemonData.combatStats} />
               <div className='pokemon-types'>
 
-                  <div className='pokemon-types-types'>
-                    <div className='pokemon-types-title'>
-                      <h3>Types</h3>
-                    </div>
-                    <div className='pokemon-types-tags'>
-                      {pokemonData.type.map(t => (
-                        <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
-                      ))}
-                    </div>
-                  </div>
+                  
                 
                 
                 <div className='pokemon-types-strengths'>
@@ -248,36 +248,6 @@ while (evol) {
                       ))}
                     </div>
                   </div>
-                      
-                  {/* <div className='pokemon-types-inmune'>
-                    <div className='pokemon-types-title'>
-                      <h3>Inmune</h3>
-                    </div>
-                    <div className='pokemon-types-tags'>
-                      {pokemonData.inmuneAgainst.length > 0 ? (
-                        pokemonData.inmuneAgainst.map(t => (
-                          <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
-                        ))
-                      ) : (
-                        <p>Has no inmunity</p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className='pokemon-types-vulnerable'>
-                    <div className='pokemon-types-title'>
-                      <h3>Vulnerable</h3>
-                    </div>
-                    <div className='pokemon-types-tags'>
-                      {pokemonData.uselessAgainst.length > 0 ? (
-                        pokemonData.uselessAgainst.map(t => (
-                          <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
-                        ))
-                      ) : (
-                        <p>Not vulnerable against other types</p>
-                      )}
-                    </div>
-                  </div> */}
 
               </div>
             </div>
