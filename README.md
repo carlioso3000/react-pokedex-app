@@ -2,6 +2,40 @@
 A pokedex created with javascript and react using the pokeapi API
 # Getting Started with Create React App
 
+
+# Pokedex app created with javascript and React 
+
+### A fully responsive pokedex created with javascript, react and antdesign. 
+
+#### Features: 
+- Displays a list of pokemons in gallery form
+- Displays pokemon cards that allow you to preview basic information about each pokemon 
+- Allows you to search for pokemons by their name from the home page 
+- Allows you to filter pokemons by type, displaying a list of pokemons of the specific type 
+- By clicking on a pokemon you will be redirected to a page where more detailed statistics of the pokemons are shown
+
+I used react-router-dom to set up the routes and navigation of the application. I also imported some components from the antdesign library that allowed me to improve the functionality of the application, such as pagination, search inputs or the layout itself. 
+
+The application was completely designed and developed by me for educational purposes as part of my learning process in the field of programming. 
+
+## Objectives
+#### The objectives proposed to be achieved with the realization of this app were:
+
+- Learn data consumption from APIs
+- Put into practice knowledge of react and componentization of applications with react
+- Know what the folder structure is in a medium-sized development project
+- Put into practice skills in html, css, JavaScript, responsive web design.
+- Familiarize myself with the use of libraries such as antdesign to carry out more professional projects.
+
+## Improvement 
+
+Having created the application for educational purposes, I have no doubt that many implementations can be improved and done in different ways, one of my goals is to optimize its code as much as possible and thus continue learning.
+
+The use of the application is open to anyone, as long as due recognition and mention is given to the author and it is not used for profit.
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -15,58 +49,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
