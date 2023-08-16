@@ -1,9 +1,10 @@
 
-.ant-card-body {
+.ant-card .ant-card-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #a4a4a4;
+  padding: 10px 25px 10px 25px;
 }
 
 .ant-card-cover {

@@ -163,14 +163,16 @@ while (evol) {
           <NextPrevButton pokemonText={` #${pokemonData.id + 1}`} text="Next" nextButton={true} nextOrPrev={getNextPokemon} />
         </div>
 
+        
+        
+        <Content className='content-style pokemon-stats-content'>
         <div className='filter-and-searcher-container'>
           <PokemonSearch 
             onSearch={/*setSearchedPokemon*/handleSearch}
           />
         </div>
-        
-        <Content className='content-style'>
-            <div className='pokemon-container'>
+          <div className='pokemon-and-stats-container'>
+          <div className='pokemon-container'>
               <h2>
                 {pokemonData.name} <span className='pokemon-id'>
                   #{pokemonData.id.toString().padStart(4, '0')}
@@ -184,7 +186,7 @@ while (evol) {
               <div className='pokemon-types-types'>
                     <div className='pokemon-types-tags'>
                       {pokemonData.type.map(t => (
-                        <Tag key={t} width={100} color={typeColors[t]}>{t}</Tag>
+                        <Tag key={t} color={typeColors[t]}>{t}</Tag>
                       ))}
                     </div>
                   </div>
@@ -251,6 +253,7 @@ while (evol) {
 
               </div>
             </div>
+           </div>
           </Content>
         <Footer style={footerStyle}><FooterContent /></Footer>
       </Layout>

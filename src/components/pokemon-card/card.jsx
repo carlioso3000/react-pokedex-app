@@ -37,7 +37,7 @@ function CardPokemon({ pokemonName, pokemonImage, pokemonType, pokemonId }) {
 <Card
       cover={<img onClick={handleClick} alt={pokemonName} src={pokemonImage} />}
     >
-      <Title level={5}>#{pokemonId} {pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)}</Title>
+      <Title level={5}>#{pokemonId} <br></br> {pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)}</Title>
       <div style={{ display:'flex', width:'100%'}}>
       {pokemonType.map(t => (
         <Tag key={t} width={100} color={typeColors[t]} style={{ flex: 1, textAlign: 'center' }}>{t}</Tag>

@@ -4,26 +4,59 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.footer-content h4 {
+  font-family: 'Pocket Monk', sans-serif;
+  letter-spacing: 4px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-size: x-large;
+  color: rgb(214, 214, 0);
+  text-shadow:
+    -1px -1px 0 #ff6666,
+    1px -1px 0 #ff6666,
+    -1px 1px 0 #ff6666,
+    1px 1px 0 #ff6666;
+}
+img {
+  width: 20px;
+}
 .footer-content-information {
   text-align: center;
-  font-weight: bold;
   color: rgb(196, 196, 196);
 }
 
 .footer-content-icons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   width: 100%;
-  padding-right: 70px;
   font-size: xx-large;
 }
 .footer-content-icons a {
-  color: gray;
+  color: rgb(179, 179, 179);
 }
 .footer-content-icons a:hover {
   color: rgba(128, 128, 128, 0.596);
 }
-.footer-content-icons > * {
-  margin-left: 30px;
+
+.image-container {
+  position: relative;
+}
+
+.line1 {
+  position: absolute;
+  width: 45%;
+  top: 40%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: white;
+}
+.line2 {
+  position: absolute;
+  width: 45%;
+  top: 40%;
+  right: 0;
+  right: 0;
+  height: 4px;
+  background-color: white;
 }

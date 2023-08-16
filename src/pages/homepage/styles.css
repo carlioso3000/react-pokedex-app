@@ -4,6 +4,8 @@
 }
 
 .ant-layout-header h1 {
+  margin: 0;
+  padding: 10px;
   cursor: pointer;
   font-family: 'Pocket Monk', sans-serif;
   font-weight: 400;
@@ -18,8 +20,8 @@
 
 .ant-layout-content {
   padding: 80px;
-  margin: 50px;
-  border: 2px solid black;
+  margin: 0px 120px;
+  color: #2f2f2f;
   border-radius: 5px;
 }
 .filter-and-searcher-container {
@@ -27,5 +29,63 @@
   justify-content: space-evenly;
   align-items: center;
   padding: 20px 0 2px 0;
+  margin: 0 120px 0 120px;
 }
+.header-title {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  
+}
+.header-title h3 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 400;
+  font-size: x-large;
+  color: yellow;
+  margin: 0 100px 0 0;
+  line-height: normal;
+}
+
+
+/* MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS */
+
+@media (max-width: 480px) {
+  /* estilos para dispositivos móviles */
+  @media (max-width: 480px) {
+    .header-title h3 {
+      display: none;
+    }
+    .ant-layout-header {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+    .filter-and-searcher-container {
+      flex-direction: column;
+    }
+    .ant-select {
+      width: 100%;
+    }
+    .ant-input-search {
+      width: 100%;
+    }
+  }
+  
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  /* estilos para tablets */
+  .header-title h3 {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* estilos para laptops */
+  .ant-layout-content {
+    margin: 0;
+  }
+}
+
+
 

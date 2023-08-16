@@ -21,7 +21,7 @@ function Chart({ stats }) {
       <div className="chart-bars">
         {Object.entries(stats).map(([statName, statValue]) => (
           <div key={statName} className="chart-bar">
-            <div style={{ width: 60, height: statValue * 1.2, backgroundColor: '#f8333c', borderRadius: 3 }} />
+            <div style={{ height: statValue * 1.2, backgroundColor: '#f8333c', borderRadius: 3 }} />
             <div className="chart-value">{statValue}</div>
           </div>
         ))}

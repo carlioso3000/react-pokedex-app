@@ -23,15 +23,19 @@ function HomePage () {
     <Layout>
       <Header style={headerStyle}>
         <HomePageButton/>
+        <div className="header-title">
+          <h3>Search for a pokemon by name or select a type to show a list of pokemons</h3>
+        </div>
       </Header>
         <div className='filter-and-searcher-container'>
-          <h3>Search for a pokemon by name or select a type to show a list of pokemons</h3>
-          <PokemonFilter 
-            onSelectType={setSelectedType} 
-          />
+          
+          
 
           <PokemonSearch 
             onSearch={setSearchedPokemon}
+          />
+          <PokemonFilter 
+            onSelectType={setSelectedType} 
           />
         </div>
 

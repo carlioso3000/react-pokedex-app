@@ -25,12 +25,8 @@ function PokemonFilter({ onSelectType }) {
   return (
     <>
       <Select
-        size="large"
         placeholder="Select a type"
         onChange={handleChange}
-        style={{
-          width: 200,
-        }}
         options={selectOptions}
       />
     </>

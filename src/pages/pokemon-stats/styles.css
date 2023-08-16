@@ -7,7 +7,6 @@
   text-align: start;
   color: #fff;
   height: 80px;
-  padding-inline: 50;
   background-color: #274c77;
   margin-bottom: 10px;
 }
@@ -21,7 +20,6 @@
   font-size: x-large;
 }
 .content-style {
-  display: flex;
   text-align: center;
   min-height: 120;
   line-height: 60px;
@@ -32,16 +30,22 @@
 .content-style img {
   width: 400px;
 }
-
+/*eliminar>>*/ 
+.ant-layout-content .filter-and-searcher-container {
+  padding: 40px;
+}
+.ant-layout-content .filter-and-searcher-container button {
+  background-color: rgb(248, 51, 60);
+}
 
 .footer-style {
   text-align: center;
   background-color: #7dbcea;
 }
 
-.ant-layout-content {
+.pokemon-stats-content {
   margin: 0px 120px;
-  padding: 40px;
+  padding: 10px 40px 40px 40px;
   color: #2f2f2f;
   border: none;
 }
@@ -91,7 +95,6 @@
 .evolution-chain-title h3 {
   font-size: x-large;
   margin: auto;
-  padding-left: 20px;
   line-height: 50px;
 }
 .pokemon-evolutions ul {
@@ -122,6 +125,10 @@
   margin: 0;
   font-size: 20px;
   font-weight: 700;
+}
+
+.chart-bar div {
+  width: 60px;
 }
 
 
@@ -170,4 +177,132 @@
 }
 .pokemon-types-strengths .pokemon-types-tags span {
 width: 100px;
+}
+.pokemon-and-stats-container {
+  display: flex;
+}
+
+/* MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS MEDIA QUERYS  */
+
+
+@media (max-width: 480px) {
+  /* estilos para dispositivos móviles */
+  .ant-layout-content {
+    margin: 0;
+    padding: 0;
+  }
+  .pokemon-container {
+    width: 100%;
+  }
+  .stats-container {
+    width: 100%;
+  }
+  .evolution-chain-title h3 {
+    padding: 0;
+  }
+  .pokemon-and-stats-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .content-style img {
+    width: 250px;
+  }
+  .pokemon-evolutions ul li img{
+    width: 80px;
+  }
+  .pokemon-evolutions ul {
+    padding: 0;
+  }
+  
+  .pokemon-evolutions ul li div p {
+    font-size: 14px;
+  }
+  .chart-container {
+    padding: 10px;
+  }
+  .chart-bar {
+    width: 80%;
+  }
+  .chart-names {
+  }
+  .chart-bar div {
+    width: 30px;
+  }
+  .chart-names div {
+    width: 60px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  /* estilos para tablets */
+  .ant-layout-content {
+    margin: 0;
+    padding: 0;
+  }
+  .pokemon-container {
+    width: 100%;
+  }
+  .stats-container {
+    width: 100%;
+  }
+  .evolution-chain-title h3 {
+    padding: 0;
+  }
+  .pokemon-and-stats-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .content-style img {
+    width: 250px;
+  }
+  .pokemon-evolutions ul li img{
+    width: 80px;
+  }
+  .pokemon-evolutions ul {
+    padding: 0;
+  }
+  
+  .pokemon-evolutions ul li div p {
+    font-size: 14px;
+  }
+  .chart-container {
+    padding: 10px;
+  }
+  .chart-bar {
+    width: 80%;
+  }
+  .chart-names {
+  }
+  .chart-bar div {
+    width: 30px;
+  }
+  .chart-names div {
+    width: 60px;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  /* estilos para laptops */
+  .ant-layout-content {
+    margin: 0;
+    padding: 0;
+  }
+  .content-style img {
+    width: 300px;
+  }
+  .pokemon-evolutions ul li img{
+    width: 100px;
+  }
+  .pokemon-types {
+    margin: 0;
+  }
+  .pokemon-types-tags span {
+    height: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+  }
 }

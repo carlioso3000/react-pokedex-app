@@ -6,7 +6,12 @@
   background-color: orange;
   font-weight: bold;
 }
-
+.ant-input--group-wrapper {
+  width: 50%;
+}
+.ant-select {
+  width: 100%;
+}
 /* Hover */
 :where(.css-dev-only-do-not-override-1jr9qlj).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
   color: #fff;

@@ -17,7 +17,6 @@ function PokemonSearch(props) {
           allowClear
           enterButton="Search"
           size="middle"
-          style= {{ width: '20%' }}
           onSearch={onSearch}
         />
   );
