@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getPokemonStats } from "../../utils/api";
-import { getGoodAgainstTypes, getBadAgainstTypes } from '../../utils/utils.jsx';
+import { getGoodAgainstTypes, getBadAgainstTypes } from '../../utils/utils';
 import { Layout, Tag } from 'antd';
 import { headerStyle, contentStyle, footerStyle } from '../../styles/layoutStyles';
 import HomePageButton from "../../components/homePageButton/homePageButton";

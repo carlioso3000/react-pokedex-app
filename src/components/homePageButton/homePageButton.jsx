@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import pokeball from '../../assets/pokeball.png';
 
 
 function HomePageButton() {
-
+  const navigate = useNavigate();
   const buttonStyle = {
     background: "transparent",
     border: "none",

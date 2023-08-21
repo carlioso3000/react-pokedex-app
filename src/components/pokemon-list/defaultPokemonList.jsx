@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getPokemonDetails, getPokemonList } from '../../utils/api.jsx';
+import { getPokemonDetails, getPokemonList } from '../../utils/api';
 import { Row, Col, Pagination } from 'antd';
 import CardPokemon from '../pokemon-card/card.jsx';
 import Loader from '../loader/loader.jsx';

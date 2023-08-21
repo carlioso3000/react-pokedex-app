@@ -9,7 +9,7 @@ function FilteredPokemonList({ selectedType }) {
   const [isLoading, setIsLoading] = useState(true);
   const [totalPokemons, setTotalPokemons] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const pokemonsPerPage = 20;
+  const pokemonsPerPage = 50;
 
 
   async function fetchData() {
@@ -19,19 +19,6 @@ function FilteredPokemonList({ selectedType }) {
     setPokemons(data);
     setIsLoading(false);
   }
-  
-
-  // async function fetchData() {
-  //   const data = await getAllPokemons();
-  //   setTotalPokemons(data.count);
-  //   const details = await getPokemonDetails(data.results);
-  //   setPokemons(details.map(pokemon => ({
-  //     name: pokemon.name,
-  //     sprite: pokemon.sprites.other["official-artwork"].front_default,
-  //     type: pokemon.types.map((type) => type.type.name),
-  //     id: pokemon.id
-  //   })));
-  // }
 
   useEffect(() => {
     fetchData();

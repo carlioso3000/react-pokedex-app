@@ -47,7 +47,7 @@ function SearchedPokemonList({ searchedPokemon }) {
       ) : (
         <Row gutter={[16, 16]}>
         {searchedPokemons.slice((currentPage - 1) * pokemonsPerPage, currentPage * pokemonsPerPage).map(pokemon => (
-          <Col key={pokemon.name} xs={24} sm={12} md={6} lg={4}>
+          <Col key={pokemon.name} xs={24} sm={12} md={6} lg={4} style={{ display: 'flex' }}>
             <CardPokemon
               pokemonId={pokemon.id}
               pokemonName={pokemon.name}

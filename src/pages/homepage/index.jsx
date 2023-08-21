@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from 'antd';
 import { headerStyle, contentStyle, footerStyle } from '../../styles/layoutStyles';
 import './styles.css';
-import pokeball from '../../assets/pokeball.png';
 import PokemonList from '../../components/pokemon-list/defaultPokemonList.jsx';
 import PokemonSearch from '../../components/pokemon-search/pokemonSearch.jsx';
 import PokemonFilter from '../../components/droptDown-filter/dropDownFilter';
@@ -16,6 +15,12 @@ const { Header, Footer, Content } = Layout;
 function HomePage () {
   const [selectedType, setSelectedType] = useState(null);
   const [searchedPokemon, setSearchedPokemon] = useState(null);
+
+  // useEffect(() => {
+  //   // Restablece el estado de los filtros cuando el componente se monta
+  //   setSelectedType(null);
+  //   setSearchedPokemon(null);
+  // }, []);
 
 
   return (

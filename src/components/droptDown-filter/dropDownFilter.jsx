@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/drop-down-filter.css';
 import { Select } from 'antd';
+import { fetchPokemonTypes } from '../../utils/api';
 
 function PokemonFilter({ onSelectType }) {
   // handles the dropdown component to show all pokemon types from the api
@@ -10,18 +11,13 @@ function PokemonFilter({ onSelectType }) {
     onSelectType(value);
   };
 
-  useEffect (()=> {
-    async function fetchPokemonTypes() {
-      const response = await fetch('https://pokeapi.co/api/v2/type/'); // only pokemon types endpoint
-      const data = await response.json();
-      setSelectOptions(data.results.map(type => ({
-        value: type.name,
-        label: type.name,
-      })));
+  useEffect(() => {
+    async function getPokemonTypes() {
+      const types = await fetchPokemonTypes();
+      setSelectOptions(types);
     }
-    fetchPokemonTypes();
+    getPokemonTypes();
   }, []);
-
   return (
     <>
       <Select
@@ -32,5 +28,4 @@ function PokemonFilter({ onSelectType }) {
     </>
   );
 }
-
 export default PokemonFilter;
