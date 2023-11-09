@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import '../../styles/drop-down-filter.css';
-import { Select } from 'antd';
-import { fetchPokemonTypes } from '../../utils/api';
+import React, { useState, useEffect } from "react";
+import "../../styles/drop-down-filter.css";
+import { Select } from "antd";
+import { fetchPokemonTypes } from "../../utils/api";
 
 function PokemonFilter({ onSelectType }) {
   // handles the dropdown component to show all pokemon types from the api
   const [selectOptions, setSelectOptions] = useState([]);
-  
+
   const handleChange = (value) => {
-    onSelectType(value);
+    if (value === "none") {
+      onSelectType(null);
+    } else {
+      onSelectType(value);
+    }
   };
 
   useEffect(() => {
@@ -23,7 +27,7 @@ function PokemonFilter({ onSelectType }) {
       <Select
         placeholder="Select a type"
         onChange={handleChange}
-        options={selectOptions}
+        options={[{ value: "none", label: "none" }, ...selectOptions]}
       />
     </>
   );
