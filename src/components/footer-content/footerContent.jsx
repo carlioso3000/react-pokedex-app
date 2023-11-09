@@ -10,16 +10,16 @@ function FooterContent() {
       <div className="footer-content-information">
         <h4>Pokedex</h4>
         <div className="image-container">
-          <img src={pokeball} />
+          <img alt="pokeball" src={pokeball} />
           <div className="line1"></div>
           <div className="line2"></div>
         </div>
         <p>Designed and Developed: Carlosdev90</p>
         <p>Contact Information: Carlosdev90@gmail.com</p>
         <div className="footer-content-icons">
-        <a href="https://github.com/carlioso3000" target="_blank"><AiFillGithub /></a>
-        <a href="https://www.linkedin.com/in/carlos-cabrera-323678113" target="_blank"><AiFillLinkedin /></a>
-        <a href="https://github.com/carlioso3000" target="_blank"><TbWorldWww /></a>
+        <a href="https://github.com/carlioso3000" target="_blank" rel="noreferrer noopener"><AiFillGithub /></a>
+        <a href="https://www.linkedin.com/in/carlos-cabrera-323678113" target="_blank" rel="noreferrer noopener"><AiFillLinkedin /></a>
+        <a href="https://github.com/carlioso3000" target="_blank" rel="noreferrer noopener"><TbWorldWww /></a>
       </div>
       </div>
 

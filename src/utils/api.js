@@ -1,33 +1,62 @@
 // It provides a list of all pokemons
 async function getAllPokemons() {
-  try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=20000&offset=0`);
-    const allPokemonList = await response.json();
-    return allPokemonList;
-  } catch (error) {
-    console.error(error);
-    return [];
+  // Intenta obtener los datos del localStorage
+  const cachedData = localStorage.getItem("allPokemons");
+  if (cachedData) {
+    // Si los datos están en el localStorage, úsalos
+    return JSON.parse(cachedData);
+  } else {
+    try {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/?limit=1300&offset=0`
+      );
+      const allPokemonList = await response.json();
+
+      // Guarda los datos en el localStorage para su uso futuro
+      localStorage.setItem("allPokemons", JSON.stringify(allPokemonList));
+
+      return allPokemonList;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   }
 }
-// It provides a list of 20 pokemons per page
+//Provee la lista de 50 pokemons por pagina
 async function getPokemonList(offset) {
-  try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=50&offset=${offset}`);
-    const pokemonList = await response.json();
-    return pokemonList;
-  } catch (error) {
-    console.error(error);
-    return null;
+  const cacheData = localStorage.getItem(`pokemonList_${offset}`);
+  if (cacheData) {
+    // Si los datos están en el localStorage,agarralos de ahí
+    return JSON.parse(cacheData);
+  } else {
+    //si no están entonces haz el fetch
+    try {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/?limit=50&offset=${offset}`
+      );
+      const pokemonList = await response.json();
+      // Guarda los datos en el localStorage para su uso futuro
+      localStorage.setItem(
+        `pokemonList_${offset}`,
+        JSON.stringify(pokemonList)
+      );
+      return pokemonList;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   }
 }
 // it provides pokemon details
 async function getPokemonDetails(pokemonList) {
   try {
-    const promises = pokemonList.map(pokemon => fetch(pokemon.url).then(res => res.json()));
+    const promises = pokemonList.map((pokemon) =>
+      fetch(pokemon.url).then((res) => res.json())
+    );
     const results = await Promise.allSettled(promises);
     const pokemonDetails = results
-      .filter(result => result.status === 'fulfilled')
-      .map(result => result.value);
+      .filter((result) => result.status === "fulfilled")
+      .map((result) => result.value);
     return pokemonDetails;
   } catch (error) {
     console.error(error);
@@ -36,37 +65,57 @@ async function getPokemonDetails(pokemonList) {
 }
 //it provides pokemon filtered per types
 async function getPokemonPerType(type) {
-  try {
-    const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
-    const data = await response.json();
-    const promises = data.pokemon.map(async ({ pokemon }) => {
-      const pokemonResponse = await fetch(pokemon.url);
-      const pokemonDetails = await pokemonResponse.json();
-      return {
-        name: pokemonDetails.name,
-        sprite: pokemonDetails.sprites.other["official-artwork"].front_default,
-        type: pokemonDetails.types.map((type) => type.type.name),
-        id: pokemonDetails.id
-      };
-    });
-    const results = await Promise.allSettled(promises);
-    const pokemonData = results
-      .filter(result => result.status === 'fulfilled')
-      .map(result => result.value);
-    return pokemonData;
-  } catch (error) {
-    console.error(error);
-    return [];
+  // intenta encontrar la info en local storage, si está la retorna, si no, hace el fetch
+  const cacheData = localStorage.getItem(`pokemonPerType_${type}`);
+  if (cacheData) {
+    return JSON.parse(cacheData);
+  } else {
+    try {
+      const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
+      const data = await response.json();
+      const promises = data.pokemon.map(async ({ pokemon }) => {
+        const pokemonResponse = await fetch(pokemon.url);
+        const pokemonDetails = await pokemonResponse.json();
+        return {
+          name: pokemonDetails.name,
+          sprite:
+            pokemonDetails.sprites.other["official-artwork"].front_default,
+          type: pokemonDetails.types.map((type) => type.type.name),
+          id: pokemonDetails.id,
+        };
+      });
+      const results = await Promise.allSettled(promises);
+      const pokemonData = results
+        .filter((result) => result.status === "fulfilled")
+        .map((result) => result.value);
+      // Guarda los datos en el localStorage para su uso futuro
+      localStorage.setItem(
+        `pokemonPerType_${type}`,
+        JSON.stringify(pokemonData)
+      );
+      return pokemonData;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   }
 }
 //it provides pokemon stats for PokemonStats Page
-async function getPokemonStats(pokemon){
+async function getPokemonStats(pokemon) {
   try {
     const isId = !isNaN(pokemon);
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${isId ? pokemon : pokemon.toLowerCase()}/`);
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${
+        isId ? pokemon : pokemon.toLowerCase()
+      }/`
+    );
     const pokemonStats = await response.json();
     // here i will obtain evolution information for the pokemon that is being shown
-    const responseForEvolutions = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${isId ? pokemon : pokemon.toLowerCase()}/`);
+    const responseForEvolutions = await fetch(
+      `https://pokeapi.co/api/v2/pokemon-species/${
+        isId ? pokemon : pokemon.toLowerCase()
+      }/`
+    );
     const speciesData = await responseForEvolutions.json();
     const evolutionUrl = speciesData.evolution_chain.url;
     const evolutionRes = await fetch(evolutionUrl);
@@ -79,9 +128,9 @@ async function getPokemonStats(pokemon){
 }
 // it only provides pokemon types to show type tags
 async function fetchPokemonTypes() {
-  const response = await fetch('https://pokeapi.co/api/v2/type/'); 
+  const response = await fetch("https://pokeapi.co/api/v2/type/");
   const data = await response.json();
-  return data.results.map(type => ({
+  return data.results.map((type) => ({
     value: type.name,
     label: type.name,
   }));
@@ -92,5 +141,5 @@ export {
   getAllPokemons,
   getPokemonStats,
   getPokemonPerType,
-  fetchPokemonTypes
+  fetchPokemonTypes,
 };
