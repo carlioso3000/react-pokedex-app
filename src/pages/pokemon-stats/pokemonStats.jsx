@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getPokemonStats } from "../../utils/api";
 import { getGoodAgainstTypes, getBadAgainstTypes } from "../../utils/utils";
 import { Layout, Tag } from "antd";
@@ -44,6 +44,8 @@ function PokemonStats() {
     id: 0,
     type: [],
     sprite: "",
+    evolvesAt: "",
+    evolutionTrigger: "",
     combatStats: {
       hp: 0,
       attack: 0,
@@ -57,13 +59,16 @@ function PokemonStats() {
     badAgainst: [],
   });
   // recently added pokemonId as parameter to fetchData and value for const data
-  async function fetchData(pokemonId) {
+  const fetchData = useCallback(async (pokemonId) => {
+    // Tu código aquí
     const data = await getPokemonStats(
       searchedPokemon.trim() ? searchedPokemon : pokemonId || id
     );
 
     const evolutionData = data.evolutionData; //to obtain evolutions
     const pokemonStats = data.pokemonStats; // obtain general stats
+    const evolvesAt = data.evolvesAt;
+    const evolutionTrigger = data.evolutionTrigger;
 
     const { goodAgainstTypes, inmuneAgainst } = await getGoodAgainstTypes(
       pokemonStats.types.map((t) => t.type)
@@ -95,6 +100,8 @@ function PokemonStats() {
       id: pokemonStats.id,
       type: pokemonStats.types.map((type) => type.type.name),
       sprite: pokemonStats.sprites.other["official-artwork"].front_default,
+      evolvesAt: evolvesAt,
+      evolutionTrigger: evolutionTrigger,
       combatStats: {
         hp: pokemonStats.stats[0].base_stat,
         attack: pokemonStats.stats[1].base_stat,
@@ -109,16 +116,73 @@ function PokemonStats() {
       badAgainst: badAgainstTypes,
       uselessAgainst: uselessAgainst,
     });
-  }
+}, [id, searchedPokemon]); // Asegúrate de incluir todas las dependencias que tu función necesita
+  /*async function fetchData(pokemonId) {
+    const data = await getPokemonStats(
+      searchedPokemon.trim() ? searchedPokemon : pokemonId || id
+    );
+
+    const evolutionData = data.evolutionData; //to obtain evolutions
+    const pokemonStats = data.pokemonStats; // obtain general stats
+    const evolvesAt = data.evolvesAt;
+    const evolutionTrigger = data.evolutionTrigger;
+
+    const { goodAgainstTypes, inmuneAgainst } = await getGoodAgainstTypes(
+      pokemonStats.types.map((t) => t.type)
+    );
+    const { badAgainstTypes, uselessAgainst } = await getBadAgainstTypes(
+      pokemonStats.types.map((t) => t.type)
+    );
+
+    //lets find out if there is any evolution
+    let evol;
+    if (evolutionData.chain.evolves_to.length > 0) {
+      evol = evolutionData.chain;
+    }
+    const evolutions = [];
+    while (evol) {
+      let id = evol.species.url.split("/")[6];
+
+      evolutions.push({
+        name: evol.species.name,
+        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+        id: id,
+      });
+
+      evol = evol.evolves_to.length > 0 ? evol.evolves_to[0] : undefined;
+    }
+
+    setPokemonData({
+      name: pokemonStats.name,
+      id: pokemonStats.id,
+      type: pokemonStats.types.map((type) => type.type.name),
+      sprite: pokemonStats.sprites.other["official-artwork"].front_default,
+      evolvesAt: evolvesAt,
+      evolutionTrigger: evolutionTrigger,
+      combatStats: {
+        hp: pokemonStats.stats[0].base_stat,
+        attack: pokemonStats.stats[1].base_stat,
+        defense: pokemonStats.stats[2].base_stat,
+        specialAttack: pokemonStats.stats[3].base_stat,
+        specialDefense: pokemonStats.stats[4].base_stat,
+        speed: pokemonStats.stats[5].base_stat,
+      },
+      evolutions: evolutions,
+      goodAgainst: goodAgainstTypes,
+      inmuneAgainst: inmuneAgainst,
+      badAgainst: badAgainstTypes,
+      uselessAgainst: uselessAgainst,
+    });
+  }*/
 
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, [id, fetchData]);
 
   //eliminar
   useEffect(() => {
     fetchData();
-  }, [searchedPokemon]);
+  }, [searchedPokemon, fetchData]);
   //eliminar
 
   function getNextPokemon() {
